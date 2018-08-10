@@ -49,7 +49,7 @@ population_list = gen_population(population_size, max_sublot, mc_op, job_count, 
 print('initial population: ', population_list)
 best_list, best_c = [], []
 best_obj = []
-best_span = 99999999999999999999999999
+best_span = 99999999999999999
 for iteration in range(num_iteration):
     print('iter = ',iteration)
     #total_chromosome = population_list
@@ -69,8 +69,10 @@ for iteration in range(num_iteration):
     #print('new: ',population_list)
     # Fitness initial population ( can dieu chinh do day tinh theo makespan chu ko phai Tardiness)
     local_makespan_list = [makespan_timeCalculation(lot_sizeCalculation(demand, population_list[pop]['LHS']), population_list[pop]['RHS'], setup_time, processing_time, sequence, mc_op) for pop in range(population_size)]
-    best_span = max(local_makespan_list)
-    best_list = population_list[local_makespan_list.index(best_span)]
+    local_best_span = min(local_makespan_list)
+    if local_best_span < best_span:
+        best_span = local_best_span
+        best_list = population_list[local_makespan_list.index(best_span)]
     
     print('iter: ', iteration,' best span: ', best_span)
     print(best_list)
@@ -84,5 +86,6 @@ RHS = best_list['RHS']
 LHS = best_list['LHS']
 lot_size = lot_sizeCalculation(demand, LHS)
 makespan, max_c, completion_time= lot_finished_timeCalculation(lot_size, RHS, setup_time, processing_time, sequence, mc_op)
+
 print('makespan', best_span)
 print(gantt(demand, RHS, processing_time, sequence, lot_size, run_time, best_c))

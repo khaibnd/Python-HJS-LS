@@ -52,9 +52,9 @@
 
 "SStM" : 0.7,
 "SSwM" : 0.7,
-"SSD" : 0.1,
-"ROAM" : 0.2,
-"IOAM" : 0.1,
-"OSSM" : 0.2,
+"SSD" : 0.7,
+"ROAM" : 0.7,
+"IOAM" : 0.7,
+"OSSM" : 0.7,
 
 "theta_max" : 0.8}

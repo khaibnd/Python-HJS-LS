@@ -8,7 +8,7 @@
 
 "mutation_selection_rate" : 0.4,
 
-"num_iteration" : 1000,
+"num_iteration" : 5,
 
 "job_count" : 10,
 
