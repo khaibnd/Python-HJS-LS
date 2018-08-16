@@ -1,18 +1,14 @@
 
 import pandas as pd
 import numpy as np
-import json
+
 import plotly
 import plotly.plotly as py
 import plotly.figure_factory as ff
 from src.fitnessCalculation.startDate import start_date
-from src.fitnessCalculation.LHS import lot_sizeCalculation
-from src.fitnessCalculation.RHS import lot_finished_timeCalculation, run_time
+
 plotly.tools.set_credentials_file(username='khaibnd', api_key='tpPcfBEzxRZX56T9d3GK')
-
 start_date = start_date()
-
-
 
 def gantt(demand, RHS, processing_time, sequence, lot_size, run_time, c):    
     j_keys=[item[:2] for item in RHS]

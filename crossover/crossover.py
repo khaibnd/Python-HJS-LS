@@ -19,7 +19,7 @@ print(population_list)
 print(len(population_list))
 
 population_size = 20
-num_iteration=  2      # Nho doiz
+num_iteration=  2
 '''
 
 def chros_crossover(population_list, max_sublot, SPC_1_rate, SPC_2_rate, OMAC_rate, JLOSC_rate, SLOSC_rate):

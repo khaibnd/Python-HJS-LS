@@ -31,9 +31,11 @@ def gen_lhs(length):
 def gen_rhs(length, max_sublot, mc_op,job_count, sequence):
     ret = []
     job_list = [[k, i, j] for k in range(len(max_sublot)) for i in range(max_sublot[k]) for j in range([len(i) for i in sequence][k])]
+    
     random.shuffle(job_list)
-
+    print(job_list)
     for i in range(job_count):
+        print(i)
         for k in range(max_sublot[i]):
             temp_value = []
             temp_position = []
@@ -41,7 +43,7 @@ def gen_rhs(length, max_sublot, mc_op,job_count, sequence):
                 if job_list[j][0:2]  == [i,k]:
                     temp_position.append(j)
                     temp_value.append(job_list[j])
-                    
+                        
             temp_value_ind = {c: [b, a, c] for (b, a, c) in temp_value}
             sorted_temp_value = [temp_value_ind[c] for c in sequence[i]]
 

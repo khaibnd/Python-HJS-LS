@@ -77,7 +77,7 @@ def chros_selection(k_way,population_size,  total_chromosome, demand, setup_time
     new_poppulation_list = []
     for pop in range(population_size):
         print('selection element: ', pop)
-        
+        print('pop: ', pop)
         random_index = np.random.choice(len(total_chromosome), k_way, replace=False)
         k_way_pupulation_list = [total_chromosome[j] for j in random_index]
                

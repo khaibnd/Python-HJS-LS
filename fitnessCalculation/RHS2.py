@@ -74,10 +74,7 @@ def lot_finished_timeCalculation(lot_size, RHS, setup_time, processing_time, seq
                 # Step 5.3: First operation in sequence and machine m assignment > 1 (dung de xem xet khi co su khac nhau giua setup time ban dau, va setup time doi part) 
                 
                 prev_op_mc_RHS_index_list = []
-                for i in range(len(RHS[:r])):
-                    if RHS[r][2:] == [i[2:] for i in RHS][i]:
-                        prev_op_mc_RHS_index_list.append(i)
-                prev_op_mc_RHS_index = max([i for i in prev_op_mc_RHS_index_list if i < r])
+                prev_op_mc_RHS_index = max([i for i, al in enumerate(RHS[:r]) if RHS[r][2:] == al[2:]])
                 completion_time[r] = completion_time[prev_op_mc_RHS_index] + procTime
                 machine_assigne_time[RHS[r][2]][RHS[r][3]] +=1
                     
@@ -88,11 +85,7 @@ def lot_finished_timeCalculation(lot_size, RHS, setup_time, processing_time, seq
                 prev_sequence = sequence[RHS[r][0]][curent_sequence_index-1]                              # Return previous sequence operation of current chromosome
                 prev_operation_comp_index = [i[0:3] for i in RHS].index([RHS[r][0], RHS[r][1], prev_sequence])      # Return previous chromosome of current job + sublot
               
-                prev_op_mc_RHS_index_list = []
-                for i in range(len(RHS[:r])):
-                    if RHS[r][2:] == [i[2:] for i in RHS][i]:
-                        prev_op_mc_RHS_index_list.append(i)
-                prev_op_mc_RHS_index = max([i for i in prev_op_mc_RHS_index_list if i < r])
+                prev_op_mc_RHS_index = max([i for i, al in enumerate(RHS[:r]) if RHS[r][2:] == al[2:]])
                 
                 completion_time[r] = max(completion_time[prev_operation_comp_index], completion_time[prev_op_mc_RHS_index]) + procTime
                 machine_assigne_time[RHS[r][2]][RHS[r][3]] +=1
@@ -139,10 +132,7 @@ def makespan_timeCalculation(lot_size, RHS, setup_time, processing_time, sequenc
                 # Step 5.3: First operation in sequence and machine m assignment > 1 (dung de xem xet khi co su khac nhau giua setup time ban dau, va setup time doi part) 
                 
                 prev_op_mc_RHS_index_list = []
-                for i in range(len(RHS[:r])):
-                    if RHS[r][2:] == [i[2:] for i in RHS][i]:
-                        prev_op_mc_RHS_index_list.append(i)
-                prev_op_mc_RHS_index = max([i for i in prev_op_mc_RHS_index_list if i < r])
+                prev_op_mc_RHS_index = max([i for i, al in enumerate(RHS[:r]) if RHS[r][2:] == al[2:]])
                 completion_time[r] = completion_time[prev_op_mc_RHS_index] + procTime
                 machine_assigne_time[RHS[r][2]][RHS[r][3]] +=1
                     
@@ -151,14 +141,8 @@ def makespan_timeCalculation(lot_size, RHS, setup_time, processing_time, sequenc
                     
                 curent_sequence_index = sequence[RHS[r][0]].index(RHS[r][2])                              # Calculate index sequence of current chromosome
                 prev_sequence = sequence[RHS[r][0]][curent_sequence_index-1]                              # Return previous sequence operation of current chromosome
-                prev_operation_comp_index = [i[0:3] for i in RHS].index([RHS[r][0], RHS[r][1], prev_sequence])      # Return previous chromosome of current job + sublot
-              
-                prev_op_mc_RHS_index_list = []
-                for i in range(len(RHS[:r])):
-                    if RHS[r][2:] == [i[2:] for i in RHS][i]:
-                        prev_op_mc_RHS_index_list.append(i)
-                prev_op_mc_RHS_index = max([i for i in prev_op_mc_RHS_index_list if i < r])
-                
+                prev_operation_comp_index = [i[0:3] for i in RHS].index([RHS[r][0], RHS[r][1], prev_sequence])      # Return previous chromosome of current job + sublot              
+                prev_op_mc_RHS_index = max([i for i, al in enumerate(RHS[:r]) if RHS[r][2:] == al[2:]])                
                 completion_time[r] = max(completion_time[prev_operation_comp_index], completion_time[prev_op_mc_RHS_index]) + procTime
                 machine_assigne_time[RHS[r][2]][RHS[r][3]] +=1
             

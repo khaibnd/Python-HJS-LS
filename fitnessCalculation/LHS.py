@@ -9,7 +9,7 @@ def lot_sizeCalculation(demand, LHS):
             if (sum(LHS[l]) > 0):           
                 size_per_sublot = int(base_size * round((demand[l]*LHS[l][ls]/sum(LHS[l])/base_size)))
             else:
-                size_per_sublot = 0
+                size_per_sublot = 500
             lot_size_per_order.append(size_per_sublot)
         lot_size.append(lot_size_per_order)
     return lot_size
